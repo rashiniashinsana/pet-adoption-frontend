@@ -1,4 +1,4 @@
-export class AdopterModel {
+export class Adopter {
     adopter_id: string;
     name: string;
     email: string;

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    margin: 0;
+    padding: 0;
+    /*background: radial-gradient(circle, #8DD06C, transparent);*/
+    /*background: radial-gradient(ellipse at 70% 70%,#00ff7fbb, transparent);*/
+
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/futuristic-technology-concept.jpg');
+    background-size: cover;
+    background-position: center;
+
+}

@@ -1,29 +1,20 @@
-import {Outlet, useLocation} from "react-router-dom";
-import {Menu} from "./Menu.tsx";
+import { Outlet } from "react-router-dom";
+import { Menu } from "./Menu.tsx";
 
 export function RootLayout() {
-    const location = useLocation();
-
-    const routeTitles: any = {
-        "/": "Dashboard",
-        "/adopter": "Adopter Management",
-        "/pet": "PetModel Management",
-        "/adoption_request": "Request Management",
-    };
-
-    const title = routeTitles[location?.pathname] || "Shop";
-
     return (
-        <div className="flex h-screen">
-            <Menu />
-            <div className="flex-1 flex flex-col transition-all duration-300">
-                <header className="bg-gray-800 text-white p-4 flex items-center">
-                    <h1 className="text-xl font-semibold">{title}</h1>
+        <>
+            <div className="flex h-screen">
+                <header>
+                    <Menu/>
                 </header>
-                <main className="p-4 flex-1 overflow-y-auto">
-                    <Outlet />
-                </main>
-            </div>
-        </div>
+
+                    <main className="p-6 flex-1 overflow-y-auto">
+                        <Outlet/>
+                    </main>
+                </div>
+
+        </>
+
     );
 }
