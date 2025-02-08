@@ -18,7 +18,7 @@ export function Menu() {
 
     return (
         <div
-            className={`bg-gray-800 text-white h-screen ${
+            className={`bg-gradient-to-r from-sky-400  to-blue-300 shadow-lg text-white h-screen ${
                 isSidebarOpen ? "w-64" : "w-16"
             } transition-all duration-300 ease-in-out`}
         >
@@ -37,13 +37,13 @@ export function Menu() {
                 {isSidebarOpen && (
                     <>
                         <img
-                            src="/src/assets/logowithoutbg.png"
+                            src="/src/assets/logo.png"
                             alt="Green Shadow Logo"
-                            className="w-16 h-16 mx-auto"
+                            className="w-20 h-20 mx-auto rounded-full border-4 border-sky-300 shadow-lg"
                         />
-                        <h2 className="text-center text-3xl font-bold">Adopet</h2>
-                        <div className="bg-white w-full py-4 mt-6 text-center rounded-lg">
-                            <h2 className="text-green-600">Rashini Vithanage</h2>
+                        <h2 className="text-center text-3xl font-bold mt-4">Adopet</h2>
+                        <div className="bg-white w-full py-4 mt-6 text-center rounded-lg shadow-lg">
+                            <h2 className="text-gray-500">Rashini Vithanage</h2>
                             <p className="text-sm text-gray-500">Admin</p>
                         </div>
                     </>
@@ -53,7 +53,7 @@ export function Menu() {
                     <li>
                         <Link
                             to="/"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-blue-700 hover:text-gray-200"
+                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
                         >
                             <LiaHomeSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Dashboard</span>}
@@ -62,7 +62,7 @@ export function Menu() {
                     <li>
                         <Link
                             to="/adopter"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-blue-700 hover:text-gray-200"
+                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
                         >
                             <LiaUserFriendsSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Adopter</span>}
@@ -71,7 +71,7 @@ export function Menu() {
                     <li>
                         <Link
                             to="/pet"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-blue-700 hover:text-gray-200"
+                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
                         >
                             <LiaPawSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Pet</span>}
@@ -79,8 +79,8 @@ export function Menu() {
                     </li>
                     <li>
                         <Link
-                            to="/place-order"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-blue-700 hover:text-gray-200"
+                            to="/adoption-request"
+                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
                         >
                             <LiaEnvelopeOpenSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Adoption Request</span>}
@@ -89,7 +89,7 @@ export function Menu() {
                     <li className="mt-auto">
                         <Link
                             to="/logout"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-blue-700 hover:text-gray-200"
+                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
                         >
                             <LiaSignOutAltSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Log Out</span>}
@@ -99,4 +99,5 @@ export function Menu() {
             </div>
         </div>
     );
+
 }
