@@ -2,9 +2,9 @@ import { toast } from "react-toastify";
 
 const validatePet = (
     name: string,
-    age: number,
+    age: string,
     breed: string,
-    type: string,
+    gender: string,
     health_status: string,
     image: File | null
 ) => {
@@ -27,10 +27,10 @@ const validatePet = (
 
     if (!validateField(name, "Pet name", alphaRegex)) return false;
     if (!validateField(breed, "Breed", alphaRegex)) return false;
-    if (!validateField(type, "Type", alphaRegex)) return false;
+    if (!validateField(gender, "Gender", alphaRegex)) return false;
     if (!validateField(health_status, "Health status", alphaNumericRegex)) return false;
 
-    if (!age || isNaN(age) || age <= 0) {
+    if (!age || isNaN(Number(age)) || Number(age) <= 0) {
         toast.error("Age must be a valid positive number.");
         return false;
     }
