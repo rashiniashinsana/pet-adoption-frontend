@@ -1,6 +1,6 @@
-import {Pet} from "../model/Pet.ts";
+import {Pet} from "../../model/Pet.ts";
 import {useSelector} from "react-redux";
-import {RootState} from "../store/store.ts";
+import {RootState} from "../../store/store.tsx";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
@@ -21,7 +21,7 @@ function PieChart() {
         chart: {
             type: "pie",
             style: {
-                fontFamily: "Poppins",
+                fontFamily: "Roboto Flex",
             },
         },
         title: {
@@ -42,8 +42,8 @@ function PieChart() {
                 dataLabels: {
                     enabled: true,
                     style: {
-                        fontFamily: "Poppins", // Set font for data labels
-                        fontSize: "10px",
+                        fontFamily: "Roboto Flex",
+                        fontSize: "15px",
                     },
                     format: "<b>{point.name}</b>: {point.percentage:.1f} %",
                 },
@@ -51,7 +51,7 @@ function PieChart() {
         },
         series: [
             {
-                name: "Crops",
+                name: "Pet",
                 colorByPoint: true,
                 data: chartData,
             },

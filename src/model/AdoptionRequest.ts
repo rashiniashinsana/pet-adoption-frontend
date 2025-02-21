@@ -1,4 +1,4 @@
-export class Adoption_RequestModel {
+export class AdoptionRequest {
     adopter_id: string;
     pet_id: string;
     request_date: string;

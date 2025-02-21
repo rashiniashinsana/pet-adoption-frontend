@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AdoptionRequest } from "../../model/AdoptionRequest.ts";
 import { saveAdoptionRequest } from "../../slice/AdoptionRequestSlice.ts";
-import { RootState } from "../../store/store.ts";
+import { RootState } from "../../store/store.tsx";
 
 interface AdoptionFormProps {
     closePopupAction: () => void;

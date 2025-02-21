@@ -1,0 +1,38 @@
+/* Signup.css */
+.signup-container {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.pet-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+}
+
+.signup-box {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.signup-info h2, .signup-form h2 {
+    color: #333;
+}
+
+.signup-info p, .signup-form p {
+    color: #777;
+}
+
+.signup-info button, .signup-form button {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-info button:hover, .signup-form button:hover {
+    background-color: #2563eb;
+}

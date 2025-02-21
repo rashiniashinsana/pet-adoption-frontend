@@ -2,9 +2,10 @@ import {Adopter} from "../model/Adopter.ts";
 // import {Pet} from "../model/Pet.ts";
 import {AdoptionRequest} from "../model/AdoptionRequest.ts";
 
+
 export const convertAdopterArrayTo2DArray = (adopterArray : Adopter[]) => {
     return adopterArray.map((adopter) => [
-        adopter.adopter_id ?? "",
+        adopter.adopter_id.toString(),
         adopter.name ?? "",
         adopter.email ?? "",
         adopter.phone ?? "",

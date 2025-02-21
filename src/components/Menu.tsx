@@ -52,8 +52,8 @@ export function Menu() {
                 <ul className="flex flex-col space-y-5 mt-5">
                     <li>
                         <Link
-                            to="/"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
+                            to="/home"
+                            className="flex items-center space-x-4 p-2 rounded hover:bg-gradient-to-bl  focus:outline-none focus:ring-blue-200 dark:focus:ring-sky-100 font-medium text-m  text-center me-2 mb-2"
                         >
                             <LiaHomeSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Dashboard</span>}
@@ -61,8 +61,8 @@ export function Menu() {
                     </li>
                     <li>
                         <Link
-                            to="/adopter"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
+                            to="adopter"
+                            className="flex items-center space-x-4 p-2 rounded hover:bg-gradient-to-bl  focus:outline-none focus:ring-blue-200 dark:focus:ring-sky-100 font-medium text-m  text-center me-2 mb-2"
                         >
                             <LiaUserFriendsSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Adopter</span>}
@@ -70,8 +70,8 @@ export function Menu() {
                     </li>
                     <li>
                         <Link
-                            to="/pet"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
+                            to="pet"
+                            className="flex items-center space-x-4 p-2 rounded hover:bg-gradient-to-bl  focus:outline-none focus:ring-blue-200 dark:focus:ring-sky-100 font-medium text-m  text-center me-2 mb-2"
                         >
                             <LiaPawSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Pet</span>}
@@ -79,8 +79,8 @@ export function Menu() {
                     </li>
                     <li>
                         <Link
-                            to="/adoption-request"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
+                            to="adoption-request"
+                            className="flex items-center space-x-4 p-2 rounded hover:bg-gradient-to-bl  focus:outline-none focus:ring-blue-200 dark:focus:ring-sky-100 font-medium text-m  text-center me-2 mb-2"
                         >
                             <LiaEnvelopeOpenSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Adoption Request</span>}
@@ -88,8 +88,8 @@ export function Menu() {
                     </li>
                     <li className="mt-auto">
                         <Link
-                            to="/logout"
-                            className="flex items-center space-x-4 p-2 rounded-md transition-colors hover:bg-cyan-600 hover:text-gray-100"
+                            to="/"
+                            className="flex items-center space-x-4 p-2 rounded hover:bg-gradient-to-bl  focus:outline-none focus:ring-blue-200 dark:focus:ring-sky-100 font-medium text-m  text-center me-2 mb-2"
                         >
                             <LiaSignOutAltSolid className="w-6 h-6"/>
                             {isSidebarOpen && <span>Log Out</span>}
