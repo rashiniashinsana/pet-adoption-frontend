@@ -16,6 +16,7 @@ const ViewAdoptionRequestPopup = ({ targetRequest, closePopupAction }: ViewAdopt
         if (targetRequest) {
             const selectedRequest = requestList.find(
                 (request: AdoptionRequest) =>
+                    request.request_id === targetRequest.request_id &&
                     request.pet_id === targetRequest.pet_id &&
                     request.adopter_id === targetRequest.adopter_id
             );

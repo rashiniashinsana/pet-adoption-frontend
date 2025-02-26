@@ -3,34 +3,36 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { Adopter } from "../model/Adopter.ts";
 import HeaderComponent from "../components/header/HeaderComponent.tsx";
-import { deleteAdopter } from "../slice/AdopterSlice.ts";
+import { deleteAdopter, getAllAdopters } from "../slice/AdopterSlice.ts";
 import SaveAdopterPopup from "../components/popup/adopter/SaveAdopterPopup.tsx";
 import TableComponent from "../components/TableComponent.tsx";
 import { convertAdopterArrayTo2DArray } from "../util/ArrayTo2DArray.ts";
 import UpdateAdopterPopup from "../components/popup/adopter/UpdateAdopterPopup.tsx";
 import ViewAdopterPopup from "../components/popup/adopter/ViewAdopterPopup.tsx";
-import {AppDispatch} from "../store/store.tsx";
+import { AppDispatch } from "../store/store.tsx";
 
 const AdopterPage = () => {
     const [saveAdopterPopup, setSaveAdopterPopup] = useState(false);
     const [updateAdopterPopup, setUpdateAdopterPopup] = useState(false);
     const [viewAdopterPopup, setViewAdopterPopup] = useState(false);
     const [search, setSearch] = useState("");
-    const [targetAdopter, setTargetAdopter] = useState<string>("");
+    const [targetAdopter, setTargetAdopter] = useState<Adopter>({} as Adopter);
     const [adopters2DArray, setAdopters2DArray] = useState<string[][]>([]);
-    const adopter = useSelector((state: { adopter: Adopter[] }) => state.adopter)
+    const adopter = useSelector((state: { adopter: Adopter[] }) => state.adopter);
 
     const dispatch = useDispatch<AppDispatch>();
 
     const handleAddAdopterPopup = () => setSaveAdopterPopup(!saveAdopterPopup);
 
-    const handleUpdateAdopterPopup = (id:string) => {
+    const handleUpdateAdopterPopup = (id: string) => {
         setUpdateAdopterPopup(!updateAdopterPopup);
+        // @ts-ignore
         setTargetAdopter(id);
     };
 
-    const handleViewAdopterPopup = (id:string) => {
+    const handleViewAdopterPopup = (id: string) => {
         setViewAdopterPopup(!viewAdopterPopup);
+        // @ts-ignore
         setTargetAdopter(id);
     };
 
@@ -46,34 +48,41 @@ const AdopterPage = () => {
             cancelButtonText: "Cancel",
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch((deleteAdopter(adopter_id)));
+                dispatch(deleteAdopter(adopter_id));
                 Swal.fire("Deleted!", "Adopter has been deleted.", "success");
+                dispatch(getAllAdopters());  // Re-fetch the adopters after deletion
             }
         });
     };
 
     useEffect(() => {
-         const filteredAdopters = convertAdopterArrayTo2DArray(adopter)
+        dispatch(getAllAdopters());  // Fetch adopters when the component mounts
+    }, [dispatch]);
+
+    useEffect(() => {
+        const filteredAdopters = convertAdopterArrayTo2DArray(adopter)
             .filter((adopter: string[]) => {
                 const adopterName = adopter[0];
                 return adopterName.toLowerCase().includes(search.toLowerCase());
             });
-        setAdopters2DArray(filteredAdopters)
+        setAdopters2DArray(filteredAdopters);
     }, [search, adopter]);
+
 
 
     return (
         <>
-
             {saveAdopterPopup && <SaveAdopterPopup closePopupAction={handleAddAdopterPopup} />}
             {updateAdopterPopup && targetAdopter && (
                 <UpdateAdopterPopup
+                    // @ts-ignore
                     targetAdopter={targetAdopter}
                     closePopupAction={() => setUpdateAdopterPopup(false)}
                 />
             )}
             {viewAdopterPopup && targetAdopter && (
                 <ViewAdopterPopup
+                    // @ts-ignore
                     targetAdopter={targetAdopter}
                     closePopupAction={() => setViewAdopterPopup(false)}
                 />
@@ -100,8 +109,6 @@ const AdopterPage = () => {
             </div>
         </>
     );
-
-
 };
 
 export default AdopterPage;

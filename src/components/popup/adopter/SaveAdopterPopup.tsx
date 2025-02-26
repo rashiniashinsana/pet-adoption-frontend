@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { Adopter } from "../../../model/Adopter.ts";
 import { generateUUID } from "../../../util/generateUUID.ts";
-import {saveAdopter} from "../../../slice/AdopterSlice.ts";
+import {getAllAdopters, saveAdopter} from "../../../slice/AdopterSlice.ts";
 import {AppDispatch} from "../../../store/store.tsx";
 
 interface SaveAdopterProps {
@@ -36,15 +36,18 @@ const SaveAdopterPopup = ({ closePopupAction, adopterToUpdate }: SaveAdopterProp
         }
 
         try {
-
-            dispatch(saveAdopter(adopter));
-            toast.success("Adopter saved successfully.");
-            closePopupAction();
+            dispatch(saveAdopter(adopter)).then(() => {
+                // After saving the adopter, fetch the updated list
+                dispatch(getAllAdopters());
+                toast.success("Adopter saved successfully.");
+                closePopupAction();
+            });
         } catch (e) {
             console.error(e);
             toast.error("Failed to save adopter.");
         }
     };
+
 
     return (
         <div className="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-50">

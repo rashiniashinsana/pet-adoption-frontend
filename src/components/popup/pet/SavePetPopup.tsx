@@ -43,6 +43,7 @@ const SavePetPopup = ({ closePopupAction, petToUpdate }: SavePetProps) => {
         if (!validatePet(pet.name, pet.age, pet.breed, pet.gender, pet.health_status, pet.image)) return;
 
         try {
+            // @ts-ignore
             dispatch(savePet(pet));
             toast.success("Pet saved successfully.");
             console.log("Pet saved successfully.");

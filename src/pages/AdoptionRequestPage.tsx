@@ -1,14 +1,15 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { AdoptionRequest } from "../model/AdoptionRequest.ts";
-import { approveAdoptionRequest, rejectAdoptionRequest } from "../slice/AdoptionRequestSlice.ts";
+import {approveAdoptionRequest, getAllAdoptionRequests, rejectAdoptionRequest} from "../slice/AdoptionRequestSlice.ts";
 import HeaderComponent from "../components/header/HeaderComponent.tsx";
 import { AppDispatch, RootState } from "../store/store.tsx";
 import CardSet from "../components/CardSet.tsx";
 import ViewAdoptionRequestPopup from "../components/popup/request/ViewAdoptionRequestPopup.tsx";
 import AdoptionForm from "../components/form/AdoptionForm.tsx";
 import {Pet} from "../model/Pet.ts";
+import {toast} from "react-toastify";
 
 const AdoptionRequestPage = () => {
     const [viewAdoptionRequestPopup, setViewAdoptionRequestPopup] = useState(false);
@@ -18,9 +19,14 @@ const AdoptionRequestPage = () => {
     const request = useSelector((state: RootState) => state.request);
     const dispatch = useDispatch<AppDispatch>();
 
+    useEffect(() => {
+         dispatch(getAllAdoptionRequests());
+    }, [dispatch]);
+
     const handleAddAdoptionRequest = () => {
         console.log("Add Adoption Request clicked");
         setAdoptPetPopup(!adoptPetPopup);
+        toast.success("Request added successfully");
     }
 
     const handleViewAdoptionRequestPopup = (data: AdoptionRequest | Pet): void => {

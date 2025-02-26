@@ -8,8 +8,9 @@ import ViewPetPopup from "../components/popup/pet/ViewPetPopup.tsx";
 import HeaderComponent from "../components/header/HeaderComponent.tsx";
 import CardSet from "../components/CardSet.tsx";
 import AdoptionForm from "../components/form/AdoptionForm.tsx";
-import {deletePet} from "../slice/PetSlice.ts";
+import {deletePet, getAllPets} from "../slice/PetSlice.ts";
 import {AdoptionRequest} from "../model/AdoptionRequest.ts";
+import {AppDispatch} from "../store/store.tsx";
 
 const PetPage = () => {
     const [savePetPopup, setSavePetPopup] = useState(false);
@@ -19,7 +20,7 @@ const PetPage = () => {
     const [search, setSearch] = useState("");
     const petsData = useSelector((state: { pet: Pet[] }) => state.pet)
     const [targetPet, setTargetPet] = useState<Pet>({} as Pet);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [pets, setPets] = useState(petsData)
 
 
@@ -48,6 +49,13 @@ const PetPage = () => {
         })
         setPets(filteredPets)
     }, [search, petsData])
+
+    useEffect(() => {
+        dispatch(getAllPets());
+    }, [dispatch]);
+
+
+
 
     const handleDeletePet = (id: string) => {
         Swal.fire({
