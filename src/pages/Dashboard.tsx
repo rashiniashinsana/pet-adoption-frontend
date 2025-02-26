@@ -4,9 +4,10 @@ import {useSelector} from "react-redux";
 import { MdPets} from "react-icons/md";
 import {RootState} from "../store/store.tsx";
 import {BsPerson} from "react-icons/bs";
-import AdopterBox from "../components/dashboard/AdopterBox.tsx";
+// import AdopterBox from "../components/dashboard/AdopterBox.tsx";
 import {GiConfirmed} from "react-icons/gi";
 import HeaderBox from "../components/dashboard/HeaderBox.tsx";
+import BarChart from "../components/dashboard/BarChart.tsx";
 
 function Dashboard() {
 
@@ -40,16 +41,20 @@ function Dashboard() {
                     </div>
                 ))}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 p-6 gap-6 col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 p-6 gap-6 col-span-3 ">
                 <div
                     className="  bg-white shadow-md rounded-lg w-50 h-70 flex items-center justify-center  max-2xl:">
                     <PieChart/>
                 </div>
                 <div
                     className="bg-white shadow-md rounded-lg w-50 h-70 flex items-center justify-center  max-2xl: ">
-                    <AdopterBox/>
+                    <BarChart/>
                 </div>
             </div>
+            {/*<div*/}
+            {/*    className="bg-white shadow-md rounded-lg w-50 h-70 flex items-center justify-center  max-2xl: ">*/}
+            {/*    <AdopterBox/>*/}
+            {/*</div>*/}
 
 
         </>
