@@ -7,10 +7,10 @@ import petImage from "../assets/logo.png";
 import backgroundImg from "../assets/f4e2ec32-6a7c-4f0d-9458-4dacd806dec2.jpg";
 import { FaFacebookF, FaInstagram } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import {RootState} from "../store/store.tsx";
+import {AppDispatch, RootState} from "../store/store.tsx";
 
 const LogInPage = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,7 +23,8 @@ const LogInPage = () => {
         }
 
         try {
-            dispatch(loginUser({ email, password }));
+            // @ts-ignore
+            dispatch( loginUser({email, password})).unwrap();
 
             if (user) {
                 toast.success("Logged in successfully.");
