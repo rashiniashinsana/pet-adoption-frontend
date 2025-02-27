@@ -86,7 +86,7 @@ For comprehensive API endpoints and usage instructions, please check out the [Po
 ## License
 
 This project is licensed under the MIT License. For more information, view the LICENSE file.
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/rashiniashinsana/pet-adoption-frontend/blob/30148ed1290500d98e2a584d486eed81fd928505/LICENSE)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
 ## Screenshots
 
 
