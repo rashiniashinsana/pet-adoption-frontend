@@ -90,25 +90,25 @@ This project is licensed under the MIT License. For more information, view the L
 
 
 ### Login Page
-![Login Page](src/assets/screenshots/SignIn.png)
+![Login Page](screenshots/SignIn.png)
 
 ### SignUp Page
-![SignUp](src/assets/screenshots/SignUp.png)
+![SignUp](screenshots/SignUp.png)
 
 ### Dashboard
-![Dashboard](src/assets/screenshots/Dashboard.png)
+![Dashboard](screenshots/Dashboard.png)
 
 ### MenuBar
-![MenuBar](src/assets/screenshots/MenuBar.png)
+![MenuBar](screenshots/MenuBar.png)
 
 ### Adopter Page
-![Adopter Page](src/assets/screenshots/AdopterPage.png)
+![Adopter Page](screenshots/AdopterPage.png)
 
 ### Adoption Request Page
-![AdoptionRequest Page](src/assets/screenshots/AdoptionRequestPage.png)
+![AdoptionRequest Page](screenshots/AdoptionRequestPage.png)
 
 ### Pet Card
-![Pet Card](src/assets/screenshots/PetCard.png)
+![Pet Card](screenshots/PetCard.png)
 
 
 
