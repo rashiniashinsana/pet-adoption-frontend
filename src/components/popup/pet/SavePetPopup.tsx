@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import validatePet from "../../../util/validation/PetValidation.ts";
 import { toast } from "react-toastify";
 import { generateUUID } from "../../../util/generateUUID.ts";
-import {savePet} from "../../../slice/PetSlice.ts";
+import { savePet } from "../../../slice/PetSlice.ts";
 
 interface SavePetProps {
     closePopupAction: () => void;
@@ -19,8 +19,10 @@ const SavePetPopup = ({ closePopupAction, petToUpdate }: SavePetProps) => {
         breed: petToUpdate?.breed || "",
         gender: petToUpdate?.gender || "",
         health_status: petToUpdate?.health_status || "",
-        image: petToUpdate?.image || null,
+        image: petToUpdate?.image || "",
     });
+
+    const [imageFile, setImageFile] = useState<File | null>(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,26 +32,55 @@ const SavePetPopup = ({ closePopupAction, petToUpdate }: SavePetProps) => {
     }, [petToUpdate]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type } = e.target;
-        setPet((prev) => ({
-            ...prev,
-            [name]: type === "file" && "files" in e.target && e.target.files
-                ? e.target.files[0]
-                : value,
-        }));
+        const { name, value } = e.target;
+        setPet({ ...pet, [name]: value });
     };
 
-    const handleSavePet = () => {
+    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImageFile(file);
+            setPet({ ...pet, image: URL.createObjectURL(file) });
+        }
+    };
+
+    const handleSavePet = async () => {
         if (!validatePet(pet.name, pet.age, pet.breed, pet.gender, pet.health_status, pet.image)) return;
 
         try {
-            // @ts-ignore
-            dispatch(savePet(pet));
+            let uploadImageURL = pet.image; // Use existing image if not updating
+
+            if (imageFile) {
+                const formData = new FormData();
+                formData.append("file", imageFile);
+                formData.append("upload_preset", "adopet"); // Use correct preset
+                formData.append("cloud_name", "dsakcdy1i");
+
+                const res = await fetch("https://api.cloudinary.com/v1_1/dsakcdy1i/image/upload", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                const uploadResponse = await res.json();
+                uploadImageURL = uploadResponse.secure_url;
+
+                if (!uploadImageURL) {
+                    toast.error("Failed to upload image.");
+                    return;
+                }
+
+                console.log("Image uploaded successfully:", uploadImageURL);
+            }
+
+            // Update pet image with Cloudinary URL
+            const petData = { ...pet, image: uploadImageURL };
+
+
+            dispatch(savePet(petData));
             toast.success("Pet saved successfully.");
-            console.log("Pet saved successfully.");
             closePopupAction();
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error(error);
             toast.error("Failed to save pet.");
         }
     };
@@ -64,7 +95,6 @@ const SavePetPopup = ({ closePopupAction, petToUpdate }: SavePetProps) => {
                     &times;
                 </button>
                 <h2 className="text-2xl font-semibold text-gray-700 text-center mb-5 border-b pb-2">Save Pet</h2>
-                <br/>
 
                 <div className="space-y-4">
                     <input
@@ -79,17 +109,16 @@ const SavePetPopup = ({ closePopupAction, petToUpdate }: SavePetProps) => {
                         type="number"
                         name="age"
                         placeholder="Enter pet age"
-                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-700  focus:border-cyan-500 focus:ring focus:ring-cyan-300"
+                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:border-cyan-500 focus:ring focus:ring-cyan-300"
                         value={pet.age}
                         onChange={handleChange}
                     />
                     <select
                         name="breed"
-                        id="breed"
                         value={pet.breed}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-700   focus:border-cyan-500 focus:ring focus:ring-cyan-300"
+                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:border-cyan-500 focus:ring focus:ring-cyan-300"
                     >
                         <option value="" disabled>Select Breed</option>
                         <option value="StreetDog">StreetDog</option>
@@ -100,16 +129,13 @@ const SavePetPopup = ({ closePopupAction, petToUpdate }: SavePetProps) => {
                         <option value="Golden Retriever">Golden Retriever</option>
                         <option value="Bulldog">Bulldog</option>
                         <option value="Husky">Husky</option>
-
-
                     </select>
                     <select
                         name="gender"
-                        id="gender"
                         value={pet.gender}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-700  focus:border-cyan-500 focus:ring focus:ring-cyan-300"
+                        className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:border-cyan-500 focus:ring focus:ring-cyan-300"
                     >
                         <option value="" disabled>Select Gender</option>
                         <option value="MALE">MALE</option>
@@ -127,10 +153,11 @@ const SavePetPopup = ({ closePopupAction, petToUpdate }: SavePetProps) => {
                         <label className="block text-gray-600 font-semibold mb-2">Upload Image</label>
                         <input
                             type="file"
+                            accept="image/*"
                             className="w-full border border-gray-300 rounded-lg p-2 bg-white text-gray-700 focus:border-cyan-500 focus:ring focus:ring-cyan-300"
-                            name="image"
-                            onChange={handleChange}
+                            onChange={handleFileUpload}
                         />
+                        {pet.image && <img src={pet.image} alt="Preview" className="mt-2 h-24 rounded-md" />}
                     </div>
                     <button
                         type="button"

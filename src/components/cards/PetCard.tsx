@@ -11,16 +11,13 @@ interface PetCardProps {
 }
 
 const PetCard = ({ petData, handleUpdatePetPopup, handleViewPetPopup, handleDeletePetPopup, handleAdoptPetPopup }: PetCardProps) => {
+
     return (
         <div className="p-4 bg-white shadow-md rounded-xl border border-gray-200 w-full max-w-xs mx-auto">
             <div className="w-full h-48 overflow-hidden rounded-lg flex justify-center items-center bg-gray-100">
                 <img
                     className="w-full h-full object-cover"
-                    src={
-                        !petData.image
-                            ? "https://via.placeholder.com/150"
-                            : URL.createObjectURL(petData.image)
-                    }
+                    src={petData.image}
                     alt="Pet"
                 />
             </div>

@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pet } from "../model/Pet.ts";
-import petDummyData from "../dummydata/PetDummyData.ts";
 import axios from "axios";
 
-const initialState: Pet[] = petDummyData;
+const initialState: Pet[] = []; // Start with an empty array instead of dummy data
 
 const api = axios.create({
     baseURL: "http://localhost:3000/pet",
 });
 
+// Async actions for API calls
 export const savePet = createAsyncThunk(
     "pet/savePet",
     async (pet: Pet, { rejectWithValue }) => {
@@ -61,6 +61,7 @@ export const deletePet = createAsyncThunk(
     }
 );
 
+// Redux Slice
 const PetSlice = createSlice({
     name: "pet",
     initialState,
@@ -80,6 +81,19 @@ const PetSlice = createSlice({
             })
             .addCase(deletePet.fulfilled, (state, action: PayloadAction<string>) => {
                 return state.filter((pet) => pet.pet_id !== action.payload);
+            })
+            // Handle rejected cases for better debugging
+            .addCase(getAllPets.rejected, (_, action) => {
+                console.error("Get All Pets Failed:", action.error);
+            })
+            .addCase(savePet.rejected, (_, action) => {
+                console.error("Save Pet Failed:", action.error);
+            })
+            .addCase(updatePet.rejected, (_, action) => {
+                console.error("Update Pet Failed:", action.error);
+            })
+            .addCase(deletePet.rejected, (_, action) => {
+                console.error("Delete Pet Failed:", action.error);
             });
     },
 });
