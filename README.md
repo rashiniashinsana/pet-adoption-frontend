@@ -1,4 +1,4 @@
-#Adopet Web application
+# Adopet Web application 🐶🐱
 
 
 Adopet is a comprehensive web application designed to facilitate the pet adoption process. It connects pet lovers with animals in need of new homes while providing an intuitive platform for managing pet profiles, adoption requests, and adopter information. Built with a modern tech stack, Adopet leverages React for the frontend and Node.js for the backend, ensuring a responsive and scalable user experience.
