@@ -1,6 +1,6 @@
 # Adopet Web application 🐶🐱
 
-## Getting Started
+## 🚀Getting Started
 
 1. Clone the Repository: Run git clone
    ```bash
