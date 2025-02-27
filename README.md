@@ -1,5 +1,38 @@
 # Adopet Web application 🐶🐱
 
+## Getting Started
+
+1. Clone the Repository: Run git clone
+   ```bash
+    https://github.com/rashiniashinsana/pet-adoption-frontend
+   ```
+   for frontend to get the source code.
+
+2. Install Dependencies
+  
+   Install the required dependencies for the frontend:
+    ```bash
+     npm install
+    ```
+3. Configure Environment Variables:
+
+  If necessary, create a `.env` file in the frontend directory.
+  Add any environment-specific variables like API URLs or keys (e.g.,     `REACT_APP_API_URL=http://localhost:5173)`.
+
+4. Start the Frontend Application:
+
+   Run the following command to start the frontend:
+   ```bash
+     npm start
+   ```
+  This will start the development server, and the app will be accessible in your browser at `http://localhost:5173`.
+     
+5. Verify the Frontend:
+   
+  Open your browser and navigate to `http://localhost:5173` to check if the frontend is 
+  working properly. Ensure all components are rendering correctly and connected to the backend.
+
+## Overview
 
 Adopet is a comprehensive web application designed to facilitate the pet adoption process. It connects pet lovers with animals in need of new homes while providing an intuitive platform for managing pet profiles, adoption requests, and adopter information. Built with a modern tech stack, Adopet leverages React for the frontend and Node.js for the backend, ensuring a responsive and scalable user experience.
 
@@ -73,13 +106,8 @@ The system is structured to handle the following core features:
 - **User Signup:** `POST /auth/signup` - Register a new user (adopter/admin).  
 - **User Login:** `POST /auth/login` - Authenticate user and generate JWT token.  
 - **Get Current Users:** `GET /auth/` - Retrieve details of the logged-in users.
-## Getting Started
-
-1. Clone the Repository: Run git clone https://github.com/rashiniashinsana/pet-adoption-frontend for frontend and https://github.com/rashiniashinsana/adopet-backend for backend to get the source code.
-
-2. Set Up the Database: Configure your database settings in the `.env` file, including MySQL connection details for Prisma ORM. Run `npx prisma migrate dev` to apply migrations.
-
-3. Build and Run: Start the backend server using `npm run dev` for development mode. For the frontend, navigate to the React project folder and `run npm start` to launch the application.
+ 
+   
 ## API Documentation
 
 For comprehensive API endpoints and usage instructions, please check out the [Postman Documentation](https://documenter.getpostman.com/view/36642476/2sAYdfrBv7).
